@@ -47,31 +47,31 @@ class MonteCarloEngine:
 
             result = self.environment.step(
 
-            current_state,
+                current_state,
 
-            portfolio
-        )
+                portfolio
+            )
 
-        next_state = result.state
+            next_state = result.state
 
-        portfolio = result.portfolio
+            portfolio = result.portfolio
 
-        risk_metrics = result.risk_metrics
-            
+            risk_metrics = result.risk_metrics
 
-        wealth_history.append(
+
+            wealth_history.append(
                 portfolio.capital
             )
 
-        state_history.append(
+            state_history.append(
                 next_state
             )
 
-        risk_history.append(
+            risk_history.append(
                 risk_metrics
             )
 
-        current_state = next_state
+            current_state = next_state
 
 
         return {

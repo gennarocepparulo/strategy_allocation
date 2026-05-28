@@ -4,6 +4,9 @@ scenario_runner.py
 Runs comparative allocation experiments.
 """
 
+from src.parameters import N_STEPS
+
+
 class ScenarioRunner:
 
     def __init__(self, monte_carlo_engine):
@@ -32,7 +35,7 @@ class ScenarioRunner:
             simulations = engine.run(
                 initial_state=initial_state,
                 n_paths=n_paths,
-                n_steps=n_steps
+                horizon=N_STEPS
             )
 
             results[policy_name] = simulations

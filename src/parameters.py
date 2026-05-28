@@ -15,10 +15,8 @@ import numpy as np
 REGIMES = [
     "carry",
     "stable_range",
-    "bull_trend",
     "stress",
     "panic",
-    "recovery"
 ]
 
 
@@ -41,22 +39,16 @@ INDEX_TO_REGIME = {
 TRANSITION_MATRIX = np.array([
 
     # carry
-    [0.70, 0.20, 0.05, 0.05, 0.00, 0.00],
+    [0.92, 0.08, 0.00, 0.00],
 
     # stable_range
-    [0.20, 0.60, 0.10, 0.10, 0.00, 0.00],
-
-    # bull_trend
-    [0.10, 0.20, 0.60, 0.10, 0.00, 0.00],
+    [0.03, 0.92, 0.05, 0.00],
 
     # stress
-    [0.05, 0.10, 0.10, 0.50, 0.20, 0.05],
+    [0.00, 0.08, 0.88, 0.04],
 
     # panic
-    [0.00, 0.00, 0.00, 0.30, 0.50, 0.20],
-
-    # recovery
-    [0.20, 0.30, 0.20, 0.10, 0.00, 0.20],
+    [0.00, 0.00, 0.18, 0.82]
 ])
 
 
@@ -82,14 +74,7 @@ REGIME_PARAMETERS = {
         "trend": 0.00,
     },
 
-    "bull_trend": {
-        "volatility": 0.25,
-        "liquidity": 0.95,
-        "funding": 0.90,
-        "leverage_stress": 0.40,
-        "trend": 0.80,
-    },
-
+   
     "stress": {
         "volatility": 0.70,
         "liquidity": 0.30,
@@ -106,13 +91,7 @@ REGIME_PARAMETERS = {
         "trend": -0.90,
     },
 
-    "recovery": {
-        "volatility": 0.35,
-        "liquidity": 0.60,
-        "funding": 0.20,
-        "leverage_stress": 0.40,
-        "trend": 0.30,
-    },
+    
 }
 
 

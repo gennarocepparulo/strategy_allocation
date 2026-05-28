@@ -47,17 +47,26 @@ def wealth_to_returns(
     wealth_history
 ):
 
-    wealth = np.array(
+    wealth_history = np.array(
         wealth_history
     )
 
+    if len(wealth_history) < 2:
+
+        return np.array([0.0])
+
     returns = (
-    wealth[1:] / wealth[:-1]
-) - 1
+        wealth_history[1:]
+        / wealth_history[:-1]
+    ) - 1
 
     returns = returns[
-    np.isfinite(returns)
-]
+        np.isfinite(returns)
+    ]
+
+    if len(returns) == 0:
+
+        return np.array([0.0])
 
     return returns
 
@@ -146,13 +155,20 @@ def evaluate_many_paths(
     all_metrics = []
 
     for wealth_history in wealth_paths:
-
-        metrics = evaluate_path_metrics(
+        wealth_history = np.array(
+            wealth_history
         )
         wealth_history = wealth_history[
-    np.isfinite(wealth_history)
-]
-         
+            np.isfinite(wealth_history)
+        ]
+
+        if len(wealth_history) < 2:
+            continue
+
+        metrics = evaluate_path_metrics(
+            wealth_history
+        )
+
         all_metrics.append(metrics)
 
     results = {

@@ -21,12 +21,31 @@ from src.parameters import TRANSITION_MATRIX
 class StateSimulator:
 
     def __init__(
-
         self,
-
         transition_matrix=None
     ):
 
+        self.regimes = REGIMES
+
+        self.regime_to_index = (
+            REGIME_TO_INDEX
+        )
+
+        self.index_to_regime = (
+            INDEX_TO_REGIME
+        )
+
+        if transition_matrix is not None:
+
+            self.transition_matrix = (
+                transition_matrix
+            )
+
+        else:
+
+            self.transition_matrix = (
+                TRANSITION_MATRIX
+            )
         # Use empirical/custom matrix if provided
 
         if transition_matrix is not None:
@@ -59,7 +78,7 @@ class StateSimulator:
             p=probs
         )
 
-        return self.regimes[next_idx]
+        return self.index_to_regime[next_idx]
 
     def generate_state(
         self,
